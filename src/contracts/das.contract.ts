@@ -88,7 +88,7 @@ export class DefinitionDTO {
 
 export class DefinitionUpdateDTO {
     id?: number;
-    name: string;
+    name?: string;
     fields?: FieldDTO[];
     attributes?: JSON
     request: any

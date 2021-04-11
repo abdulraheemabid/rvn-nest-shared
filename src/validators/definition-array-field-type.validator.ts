@@ -1,7 +1,7 @@
-import { ValidationArguments } from "class-validator";
+import { ValidationArguments, ValidatorConstraintInterface } from "class-validator";
 import { FieldTypeEnum } from "../enums";
 
-export class DefinitionArrayFieldValidationPipe {
+export class DefinitionArrayFieldValidationPipe implements ValidatorConstraintInterface  {
     constructor() { }
 
     public async validate(val: any, args: ValidationArguments): Promise<boolean> {
