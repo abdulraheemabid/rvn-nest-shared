@@ -6,3 +6,4 @@ export * from './validators/definition-array-field-type.validator';
 export * from './validators/entry.validator';
 export * from './validators/object-type-validator';
 export * from './enums';
+export * from './contracts/das.contract'
