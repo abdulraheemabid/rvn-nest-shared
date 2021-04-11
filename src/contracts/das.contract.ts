@@ -72,66 +72,66 @@ export class FieldDTO {
 export class DASContract {
     public static readonly serviceName = "das";
     public static readonly serviceFullName = "rvn-ms-das";
-    public static readonly endpoints = [
-        {
+    public static readonly endpoints = {
+        fetchAllDefinitions: {
             module: "definition",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions" },
-            inputObjectType: null,
-            outputObjectType: Array<DefinitionDTO>()
+            inputObjectType: "null",
+            outputObjectType: "DefinitionDTO"
         },
-        {
+        fetchDefinitionById: {
             module: "definition",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:id" },
-            inputObjectType: DefinitionIdDTO,
-            outputObjectType: DefinitionResponseDTO
+            inputObjectType: "DefinitionIdDTO",
+            outputObjectType: "DefinitionResponseDTO"
         },
-        {
+        createDefinition: {
             module: "definition",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.POST, route: "definitions" },
-            inputObjectType: DefinitionDTO,
-            outputObjectType: IdDTO
+            inputObjectType: "DefinitionDTO",
+            outputObjectType: "IdDTO"
         },
-        {
+        updateDefinition: {
             module: "definition",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.PATCH, route: "definitions/:id" },
-            inputObjectType: DefinitionUpdateDTO,
-            outputObjectType: IdDTO
+            inputObjectType: "DefinitionUpdateDTO",
+            outputObjectType: "IdDTO"
         },
-        {
+        deleteDefinition: {
             module: "definition",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.DELETE, route: "definitions/:id" },
-            inputObjectType: DefinitionIdDTO,
-            outputObjectType: IdDTO
+            inputObjectType: "DefinitionIdDTO",
+            outputObjectType: "IdDTO"
         },
-        {
+        fetchAllEntries: {
             module: "entry",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:defid/entries" },
-            inputObjectType: DefinitionIdDTO,
-            outputObjectType: Array<EntryDTO>()
+            inputObjectType: "DefinitionIdDTO",
+            outputObjectType: "EntryDTO"
         },
-        {
+        fetchEntryById: {
             module: "entry",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:defid/entries/:id" },
-            inputObjectType: EntryIdInputDTO,
-            outputObjectType: EntryDTO
+            inputObjectType: "EntryIdInputDTO",
+            outputObjectType: "EntryDTO"
         },
-        {
+        createEntry: {
             module: "entry",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.POST, route: "definitions/:defid/entries" },
-            inputObjectType: EntryDTO,
-            outputObjectType: IdDTO
+            inputObjectType: "EntryDTO",
+            outputObjectType: "IdDTO"
         },
-        {
+        updateEntry: {
             module: "entry",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.PATCH, route: "definitions/:defid/entries/:id" },
-            inputObjectType: EntryUpdateDTO,
-            outputObjectType: IdDTO
+            inputObjectType: "EntryUpdateDTO",
+            outputObjectType: "IdDTO"
         },
-        {
+        deleteEntry: {
             module: "entry",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.DELETE, route: "definitions/:defid/entries/:id" },
-            inputObjectType: EntryIdInputDTO,
-            outputObjectType: IdDTO
+            inputObjectType: "EntryIdInputDTO",
+            outputObjectType: "IdDTO"
         }
-    ]
+    }
 }
