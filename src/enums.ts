@@ -7,3 +7,7 @@ export enum FieldTypeEnum {
     BOOL = "bool",
     ARRAY = "array"
 }
+
+export enum ServiceNameEnum {
+    DAS = "das"
+}
