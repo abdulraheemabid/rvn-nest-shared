@@ -9,7 +9,7 @@ export class DASContract {
             module: "definition",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions" },
             inputObjectType: "null",
-            outputObjectType: "DefinitionDTO"
+            outputObjectType: "DefinitionResponseDTO[]"
         },
         fetchDefinitionById: {
             module: "definition",
@@ -17,11 +17,11 @@ export class DASContract {
             inputObjectType: "DefinitionIdDTO",
             outputObjectType: "DefinitionResponseDTO"
         },
-        fetchDefinitionByName: {
+        fetchDefinitionsByName: {
             module: "definition",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:name" },
             inputObjectType: "DefinitionNameDTO",
-            outputObjectType: "DefinitionResponseDTO"
+            outputObjectType: "DefinitionResponseDTO[]"
         },
         createDefinition: {
             module: "definition",
@@ -159,7 +159,7 @@ export class FieldDTO {
 export enum DASEndpointNames {
     FETCH_ALL_DEFINITIONS = "fetchAllDefinitions",
     FETCH_DEFINITION_BY_ID = "fetchDefinitionById",
-    FETCH_DEFINITION_BY_NAME = "fetchDefinitionByName",
+    FETCH_DEFINITIONS_BY_NAME = "fetchDefinitionsByName",
     CREATE_DEFINITION = "createDefinition",
     UPDATE_DEFINITION = "updateDefinition",
     DELETE_DEFINITION = "deleteDefinition",
