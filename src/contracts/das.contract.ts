@@ -114,6 +114,7 @@ export class IdDTO {
 }
 
 export class DefinitionResponseDTO {
+    id: number;
     name: string;
     fields?: {
         name: string;
