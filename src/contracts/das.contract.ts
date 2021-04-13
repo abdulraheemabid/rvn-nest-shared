@@ -45,7 +45,7 @@ export class DASContract {
             module: "entry",
             pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:defid/entries" },
             inputObjectType: "DefinitionIdDTO",
-            outputObjectType: "EntryDTO"
+            outputObjectType: "EntryDTO[]"
         },
         fetchEntryById: {
             module: "entry",
