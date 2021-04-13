@@ -3,9 +3,9 @@ export enum FieldTypeEnum {
     INT = "int",
     STRING = "string",
     DATE = "date",
-    ENUM = "enum",
     BOOL = "bool",
-    ARRAY = "array"
+    MULTISELECT = "multiselect",
+    SINGLESELECT = "singleselect"
 }
 
 export enum ServiceNameEnum {
