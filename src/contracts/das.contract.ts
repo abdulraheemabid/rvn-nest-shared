@@ -31,7 +31,7 @@ export interface IDefinitionController {
     delete(definitionDTO: IDefinitionIdDTO): Promise<IIdDTO>;
 }
 
-export interface EntryController {
+export interface IEntryController {
     fetchAll(definitionDTO: IDefinitionIdDTO): Promise<IEntryDTO[]>;
     fetchById(entryDto: IEntryIdDTO): Promise<IEntryDTO>;
     create(entryDto: IEntryDTO): Promise<IIdDTO>;
