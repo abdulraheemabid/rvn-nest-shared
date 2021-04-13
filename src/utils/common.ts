@@ -11,3 +11,7 @@ export function getEntryTableNameByDefinitionId(definitionId: number | string) {
 export function isNullOrUndefined(val: any) {
     return val === null || val === undefined;
 }
+
+export function isNumberString(val: string) {
+    return /^\d+$/.test(val);
+}
