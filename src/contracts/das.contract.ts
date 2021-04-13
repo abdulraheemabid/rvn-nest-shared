@@ -117,6 +117,7 @@ export class DefinitionResponseDTO {
     id: number;
     name: string;
     fields?: {
+        id: number,
         name: string;
         type: string;
         required: boolean;
