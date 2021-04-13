@@ -1,4 +1,5 @@
-import { IContract } from "./Icontract";
+import { IContract } from "./IContract";
+
 
 export class DASContract implements IContract {
     readonly serviceName = "das";
