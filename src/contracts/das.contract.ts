@@ -1,119 +1,74 @@
-import { HttpVerbs } from "../utils/http/verbs";
+import { IContract } from "./Icontract";
 
-export class DASContract {
-    public static readonly serviceName = "das";
-    public static readonly serviceFullName = "rvn-ms-das";
-
-    private static readonly _endpoints = {
-        fetchAllDefinitions: {
-            module: "definition",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions" },
-            inputObjectType: "null",
-            outputObjectType: "DefinitionResponseDTO[]"
+export class DASContract implements IContract {
+    readonly serviceName = "das";
+    readonly modules = {
+        definition: {
+            fetchAll: { service: this.serviceName, module: "definition", method: "fetchAll" },
+            fetchById: { service: this.serviceName, module: "definition", method: "fetchById" },
+            fetchByName: { service: this.serviceName, module: "definition", method: "fetchByName" },
+            create: { service: this.serviceName, module: "definition", method: "create" },
+            update: { service: this.serviceName, module: "definition", method: "update" },
+            delete: { service: this.serviceName, module: "definition", method: "delete" }
         },
-        fetchDefinitionById: {
-            module: "definition",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:id" },
-            inputObjectType: "DefinitionIdDTO",
-            outputObjectType: "DefinitionResponseDTO"
-        },
-        fetchDefinitionsByName: {
-            module: "definition",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:name" },
-            inputObjectType: "DefinitionNameDTO",
-            outputObjectType: "DefinitionResponseDTO[]"
-        },
-        createDefinition: {
-            module: "definition",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.POST, route: "definitions" },
-            inputObjectType: "DefinitionDTO",
-            outputObjectType: "IdDTO"
-        },
-        updateDefinition: {
-            module: "definition",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.PATCH, route: "definitions/:id" },
-            inputObjectType: "DefinitionUpdateDTO",
-            outputObjectType: "IdDTO"
-        },
-        deleteDefinition: {
-            module: "definition",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.DELETE, route: "definitions/:id" },
-            inputObjectType: "DefinitionIdDTO",
-            outputObjectType: "IdDTO"
-        },
-        fetchAllEntries: {
-            module: "entry",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:defid/entries" },
-            inputObjectType: "DefinitionIdDTO",
-            outputObjectType: "EntryDTO[]"
-        },
-        fetchEntryById: {
-            module: "entry",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.GET, route: "definitions/:defid/entries/:id" },
-            inputObjectType: "EntryIdInputDTO",
-            outputObjectType: "EntryDTO"
-        },
-        createEntry: {
-            module: "entry",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.POST, route: "definitions/:defid/entries" },
-            inputObjectType: "EntryDTO",
-            outputObjectType: "IdDTO"
-        },
-        updateEntry: {
-            module: "entry",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.PATCH, route: "definitions/:defid/entries/:id" },
-            inputObjectType: "EntryUpdateDTO",
-            outputObjectType: "IdDTO"
-        },
-        deleteEntry: {
-            module: "entry",
-            pattern: { service: DASContract.serviceName, method: HttpVerbs.DELETE, route: "definitions/:defid/entries/:id" },
-            inputObjectType: "EntryIdInputDTO",
-            outputObjectType: "IdDTO"
+        entry: {
+            fetchAll: { service: this.serviceName, module: "entry", method: "fetchAll" },
+            fetchById: { service: this.serviceName, module: "entry", method: "fetchById" },
+            create: { service: this.serviceName, module: "entry", method: "create" },
+            update: { service: this.serviceName, module: "entry", method: "update" },
+            delete: { service: this.serviceName, module: "entry", method: "delete" }
         }
-
-    }
-
-    public static getAllEndpointContracts() {
-        return this._endpoints;
-    }
-
-    public static getEndpointContractByName(name: DASEndpointNames) {
-        return this._endpoints[name];
     }
 }
 
-export class DefinitionDTO {
+export interface IDefinitionController {
+    fetchAll(): Promise<IDefinitionResponseDTO[]>;
+    fetchById(definitionDTO: IDefinitionIdDTO): Promise<IDefinitionResponseDTO>;
+    fetchByName(defName: IDefinitionNameDTO): Promise<IDefinitionResponseDTO[]>;
+    create(definitionDTO: IDefinitionDTO): Promise<IIdDTO>;
+    update(definitionDTO: IDefinitionUpdateDTO): Promise<IIdDTO>;
+    delete(definitionDTO: IDefinitionIdDTO): Promise<IIdDTO>;
+}
+
+export interface EntryController {
+    fetchAll(definitionDTO: IDefinitionIdDTO): Promise<IEntryDTO[]>;
+    fetchById(entryDto: IEntryIdDTO): Promise<IEntryDTO>;
+    create(entryDto: IEntryDTO): Promise<IIdDTO>;
+    update(entryDto: IEntryUpdateDTO): Promise<IIdDTO>;
+    delete(entryDto: IEntryIdDTO): Promise<IIdDTO>;
+}
+
+export interface IDefinitionDTO {
     id?: number;
     name: string;
-    fields?: FieldDTO[];
+    fields?: IFieldDTO[];
     attributes?: JSON
     request: any
     definitionId?: number
 }
 
-export class DefinitionUpdateDTO {
+export interface IDefinitionUpdateDTO {
     id?: number;
     name?: string;
-    fields?: FieldDTO[];
+    fields?: IFieldDTO[];
     attributes?: JSON
     request: any
     definitionId: number
 }
 
-export class DefinitionIdDTO {
+export interface IDefinitionIdDTO {
     definitionId: number
 }
 
-export class DefinitionNameDTO {
+export interface IDefinitionNameDTO {
     name: string
 }
 
-export class IdDTO {
+export interface IIdDTO {
     id: number;
 }
 
-export class DefinitionResponseDTO {
+export interface IDefinitionResponseDTO {
     id: number;
     name: string;
     fields?: {
@@ -127,7 +82,7 @@ export class DefinitionResponseDTO {
     }[];
 }
 
-export class EntryDTO {
+export interface IEntryDTO {
     id?: number;
     entry: any;
     definitionId: number;
@@ -135,7 +90,7 @@ export class EntryDTO {
     request: any;
 }
 
-export class EntryUpdateDTO {
+export interface IEntryUpdateDTO {
     id: number;
     entry: any;
     definitionId: number;
@@ -143,12 +98,12 @@ export class EntryUpdateDTO {
     request: any;
 }
 
-export class EntryIdInputDTO {
+export interface IEntryIdInputDTO {
     id: number;
     definitionId: number;
 }
 
-export class FieldDTO {
+export interface IFieldDTO {
     id?: number;
     name: string;
     type?: string;
@@ -158,16 +113,7 @@ export class FieldDTO {
     markDeleted?: boolean;
 }
 
-export enum DASEndpointNames {
-    FETCH_ALL_DEFINITIONS = "fetchAllDefinitions",
-    FETCH_DEFINITION_BY_ID = "fetchDefinitionById",
-    FETCH_DEFINITIONS_BY_NAME = "fetchDefinitionsByName",
-    CREATE_DEFINITION = "createDefinition",
-    UPDATE_DEFINITION = "updateDefinition",
-    DELETE_DEFINITION = "deleteDefinition",
-    FETCH_ALL_ENTRIES = "fetchAllEntries",
-    FETCH_ENTRY_BY_ID = "fetchEntryById",
-    CREATE_ENTRY = "createEntry",
-    UPDATE_ENTRY = "updateEntry",
-    DELETE_ENTRY = "deleteEntry",
+export interface IEntryIdDTO {
+    id: number;
+    definitionId: number;
 }
