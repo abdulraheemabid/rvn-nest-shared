@@ -7,7 +7,3 @@ export enum FieldTypeEnum {
     MULTISELECT = "multiselect",
     SINGLESELECT = "singleselect"
 }
-
-export enum ServiceNameEnum {
-    DAS = "das"
-}
