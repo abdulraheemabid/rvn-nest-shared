@@ -1,6 +1,23 @@
 import { IContractMessages } from "./IContract";
 
+// Methods available in DAS Service
 
+export interface IDASMethods {
+    fetchAllDefinitions(): Promise<DefinitionResponseDTO[]>;
+    fetchDefinitionById(definitionDTO: DefinitionIdDTO): Promise<DefinitionResponseDTO>;
+    fetchDefinitionByName(defName: DefinitionNameDTO): Promise<DefinitionResponseDTO[]>;
+    createDefinition(definitionDTO: DefinitionDTO): Promise<IdDTO>;
+    updateDefinition(definitionDTO: DefinitionUpdateDTO): Promise<IdDTO>;
+    deleteDefinition(definitionDTO: DefinitionIdDTO): Promise<IdDTO>;
+
+    fetchAllEntries(definitionDTO: DefinitionIdDTO): Promise<EntryDTO[]>;
+    fetchEntryById(entryDto: EntryIdDTO): Promise<EntryDTO>;
+    createEntry(entryDto: EntryDTO): Promise<IdDTO>;
+    updateEntry(entryDto: EntryUpdateDTO): Promise<IdDTO>;
+    deleteEntry(entryDto: EntryIdDTO): Promise<IdDTO>;
+}
+
+// All meesages used for the methods in DAS Service 
 export class DASContractMessages implements IContractMessages {
     readonly serviceName = "das";
     readonly modules = {
@@ -22,20 +39,8 @@ export class DASContractMessages implements IContractMessages {
     }
 }
 
-export interface IDASMethods {
-    fetchAllDefinitions(): Promise<DefinitionResponseDTO[]>;
-    fetchDefinitionById(definitionDTO: DefinitionIdDTO): Promise<DefinitionResponseDTO>;
-    fetchDefinitionByName(defName: DefinitionNameDTO): Promise<DefinitionResponseDTO[]>;
-    createDefinition(definitionDTO: DefinitionDTO): Promise<IdDTO>;
-    updateDefinition(definitionDTO: DefinitionUpdateDTO): Promise<IdDTO>;
-    deleteDefinition(definitionDTO: DefinitionIdDTO): Promise<IdDTO>;
 
-    fetchAllEntries(definitionDTO: DefinitionIdDTO): Promise<EntryDTO[]>;
-    fetchEntryById(entryDto: EntryIdDTO): Promise<EntryDTO>;
-    createEntry(entryDto: EntryDTO): Promise<IdDTO>;
-    updateEntry(entryDto: EntryUpdateDTO): Promise<IdDTO>;
-    deleteEntry(entryDto: EntryIdDTO): Promise<IdDTO>;
-}
+// DTOs
 
 export interface DefinitionDTO {
     id?: number;
