@@ -1,4 +1,4 @@
-import { FieldTypeEnum } from "../enums";
+import { FieldTypeEnum } from "./common.enums";
 
 export function getAllowedFieldTypesConcatedString(delimeter: string) {
     return Object.keys(FieldTypeEnum).map(item => FieldTypeEnum[item]).join(delimeter);

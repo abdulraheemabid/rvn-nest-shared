@@ -1,5 +1,5 @@
 import { IDASMethods, DASContractMessages, DefinitionResponseDTO, DefinitionIdDTO, DefinitionNameDTO, DefinitionDTO, IdDTO, DefinitionUpdateDTO, EntryDTO, EntryIdDTO, EntryUpdateDTO } from "..";
-import { ILogger } from "./helpers";
+import { ILogger } from "../common.interface";
 import { MSClient } from "./ms-client";
 
 export class DASClient implements IDASMethods {

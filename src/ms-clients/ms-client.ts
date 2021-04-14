@@ -1,5 +1,5 @@
-import { IApiResponseWrapper } from "..";
 import { catchError, map, timeout } from 'rxjs/operators';
+import { IApiResponseWrapper } from '../common.interface';
 
 export class MSClient {
     constructor(private client, private logger, private timeoutInMs: number) { }

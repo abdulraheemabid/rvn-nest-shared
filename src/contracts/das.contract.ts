@@ -1,6 +1,8 @@
-import { IContractMessages } from "./IContract";
+
 
 // Methods available in DAS Service
+
+import { BaseResponseDTO, IContractMessages } from "../common.interface";
 
 export interface IDASMethods {
     fetchAllDefinitions(): Promise<DefinitionResponseDTO[]>;
@@ -10,8 +12,8 @@ export interface IDASMethods {
     updateDefinition(definitionDTO: DefinitionUpdateDTO): Promise<IdDTO>;
     deleteDefinition(definitionDTO: DefinitionIdDTO): Promise<IdDTO>;
 
-    fetchAllEntries(definitionDTO: DefinitionIdDTO): Promise<EntryDTO[]>;
-    fetchEntryById(entryDto: EntryIdDTO): Promise<EntryDTO>;
+    fetchAllEntries(definitionDTO: DefinitionIdDTO): Promise<EntryResponseDTO[]>;
+    fetchEntryById(entryDto: EntryIdDTO): Promise<EntryResponseDTO>;
     createEntry(entryDto: EntryDTO): Promise<IdDTO>;
     updateEntry(entryDto: EntryUpdateDTO): Promise<IdDTO>;
     deleteEntry(entryDto: EntryIdDTO): Promise<IdDTO>;
@@ -72,18 +74,20 @@ export interface IdDTO {
     id: number;
 }
 
-export interface DefinitionResponseDTO {
+export interface DefinitionResponseDTO extends BaseResponseDTO {
     id: number;
     name: string;
-    fields?: {
-        id: number,
-        name: string;
-        type: string;
-        required: boolean;
-        attributes?: JSON;
-        validationRegex?: string;
-        arrayValues?: string[];
-    }[];
+    fields?: FieldResponseDTO[];
+}
+
+export interface FieldResponseDTO extends BaseResponseDTO {
+    id: number,
+    name: string;
+    type: string;
+    required: boolean;
+    attributes?: JSON;
+    validationRegex?: string;
+    arrayValues?: string[];
 }
 
 export interface EntryDTO {
@@ -120,4 +124,12 @@ export interface FieldDTO {
 export interface EntryIdDTO {
     id: number;
     definitionId: number;
+}
+
+export interface EntryResponseDTO extends BaseResponseDTO {
+    id?: number;
+    entry: any;
+    definitionId: number;
+    attributes?: JSON
+    request: any;
 }
