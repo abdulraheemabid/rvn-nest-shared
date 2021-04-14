@@ -2,7 +2,7 @@ import { IDASMethods, DASContractMessages, DefinitionResponseDTO, DefinitionIdDT
 import { ILogger } from "./helpers";
 import { MSClient } from "./ms-client";
 
-export class DasClientService implements IDASMethods {
+export class DASClient implements IDASMethods {
     private _MSClient: MSClient;
     private messages = new DASContractMessages();
 
