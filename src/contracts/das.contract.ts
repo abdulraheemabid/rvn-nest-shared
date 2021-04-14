@@ -1,7 +1,7 @@
 import { IContractMessages } from "./IContract";
 
 
-export class DASContract implements IContractMessages {
+export class DASContractMessages implements IContractMessages {
     readonly serviceName = "das";
     readonly modules = {
         definition: {
