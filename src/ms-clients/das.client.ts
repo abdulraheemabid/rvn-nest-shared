@@ -18,7 +18,7 @@ export class DASClient implements IDASMethods {
         return this._MSClient.send(this.messages.modules.definition.fetchById, payload);
     }
 
-    async fetchDefinitionByName(payload: DefinitionNameDTO): Promise<DefinitionResponseDTO[]> {
+    async fetchDefinitionsByName(payload: DefinitionNameDTO): Promise<DefinitionResponseDTO[]> {
         return this._MSClient.send(this.messages.modules.definition.fetchByName, payload);
     }
 

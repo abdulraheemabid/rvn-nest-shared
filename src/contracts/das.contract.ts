@@ -5,7 +5,7 @@ import { IContractMessages } from "./IContract";
 export interface IDASMethods {
     fetchAllDefinitions(): Promise<DefinitionResponseDTO[]>;
     fetchDefinitionById(definitionDTO: DefinitionIdDTO): Promise<DefinitionResponseDTO>;
-    fetchDefinitionByName(defName: DefinitionNameDTO): Promise<DefinitionResponseDTO[]>;
+    fetchDefinitionsByName(defName: DefinitionNameDTO): Promise<DefinitionResponseDTO[]>;
     createDefinition(definitionDTO: DefinitionDTO): Promise<IdDTO>;
     updateDefinition(definitionDTO: DefinitionUpdateDTO): Promise<IdDTO>;
     deleteDefinition(definitionDTO: DefinitionIdDTO): Promise<IdDTO>;
@@ -24,7 +24,7 @@ export class DASContractMessages implements IContractMessages {
         definition: {
             fetchAll: { service: this.serviceName, module: "definition", method: "fetchAllDefinitions" },
             fetchById: { service: this.serviceName, module: "definition", method: "fetchDefinitionById" },
-            fetchByName: { service: this.serviceName, module: "definition", method: "fetchDefinitionByName" },
+            fetchByName: { service: this.serviceName, module: "definition", method: "fetchDefinitionsByName" },
             create: { service: this.serviceName, module: "definition", method: "createDefinition" },
             update: { service: this.serviceName, module: "definition", method: "updateDefinition" },
             delete: { service: this.serviceName, module: "definition", method: "deleteDefinition" }
