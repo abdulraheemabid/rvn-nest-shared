@@ -34,3 +34,8 @@ export interface IContractMessages {
         }
     }
 }
+
+export interface ICustomException{
+    message: string,
+    statusCode: number
+}
