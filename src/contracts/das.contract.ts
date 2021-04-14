@@ -22,54 +22,54 @@ export class DASContract implements IContract {
     }
 }
 
-export interface IDefinitionController {
-    fetchAll(): Promise<IDefinitionResponseDTO[]>;
-    fetchById(definitionDTO: IDefinitionIdDTO): Promise<IDefinitionResponseDTO>;
-    fetchByName(defName: IDefinitionNameDTO): Promise<IDefinitionResponseDTO[]>;
-    create(definitionDTO: IDefinitionDTO): Promise<IIdDTO>;
-    update(definitionDTO: IDefinitionUpdateDTO): Promise<IIdDTO>;
-    delete(definitionDTO: IDefinitionIdDTO): Promise<IIdDTO>;
+export interface DefinitionController {
+    fetchAll(): Promise<DefinitionResponseDTO[]>;
+    fetchById(definitionDTO: DefinitionIdDTO): Promise<DefinitionResponseDTO>;
+    fetchByName(defName: DefinitionNameDTO): Promise<DefinitionResponseDTO[]>;
+    create(definitionDTO: DefinitionDTO): Promise<IdDTO>;
+    update(definitionDTO: DefinitionUpdateDTO): Promise<IdDTO>;
+    delete(definitionDTO: DefinitionIdDTO): Promise<IdDTO>;
 }
 
-export interface IEntryController {
-    fetchAll(definitionDTO: IDefinitionIdDTO): Promise<IEntryDTO[]>;
-    fetchById(entryDto: IEntryIdDTO): Promise<IEntryDTO>;
-    create(entryDto: IEntryDTO): Promise<IIdDTO>;
-    update(entryDto: IEntryUpdateDTO): Promise<IIdDTO>;
-    delete(entryDto: IEntryIdDTO): Promise<IIdDTO>;
+export interface EntryController {
+    fetchAll(definitionDTO: DefinitionIdDTO): Promise<EntryDTO[]>;
+    fetchById(entryDto: EntryIdDTO): Promise<EntryDTO>;
+    create(entryDto: EntryDTO): Promise<IdDTO>;
+    update(entryDto: EntryUpdateDTO): Promise<IdDTO>;
+    delete(entryDto: EntryIdDTO): Promise<IdDTO>;
 }
 
-export interface IDefinitionDTO {
+export interface DefinitionDTO {
     id?: number;
     name: string;
-    fields?: IFieldDTO[];
+    fields?: FieldDTO[];
     attributes?: JSON
     request: any
     definitionId?: number
 }
 
-export interface IDefinitionUpdateDTO {
+export interface DefinitionUpdateDTO {
     id?: number;
     name?: string;
-    fields?: IFieldDTO[];
+    fields?: FieldDTO[];
     attributes?: JSON
     request: any
     definitionId: number
 }
 
-export interface IDefinitionIdDTO {
+export interface DefinitionIdDTO {
     definitionId: number
 }
 
-export interface IDefinitionNameDTO {
+export interface DefinitionNameDTO {
     name: string
 }
 
-export interface IIdDTO {
+export interface IdDTO {
     id: number;
 }
 
-export interface IDefinitionResponseDTO {
+export interface DefinitionResponseDTO {
     id: number;
     name: string;
     fields?: {
@@ -83,7 +83,7 @@ export interface IDefinitionResponseDTO {
     }[];
 }
 
-export interface IEntryDTO {
+export interface EntryDTO {
     id?: number;
     entry: any;
     definitionId: number;
@@ -91,7 +91,7 @@ export interface IEntryDTO {
     request: any;
 }
 
-export interface IEntryUpdateDTO {
+export interface EntryUpdateDTO {
     id: number;
     entry: any;
     definitionId: number;
@@ -99,12 +99,12 @@ export interface IEntryUpdateDTO {
     request: any;
 }
 
-export interface IEntryIdInputDTO {
+export interface EntryIdInputDTO {
     id: number;
     definitionId: number;
 }
 
-export interface IFieldDTO {
+export interface FieldDTO {
     id?: number;
     name: string;
     type?: string;
@@ -114,7 +114,7 @@ export interface IFieldDTO {
     markDeleted?: boolean;
 }
 
-export interface IEntryIdDTO {
+export interface EntryIdDTO {
     id: number;
     definitionId: number;
 }
