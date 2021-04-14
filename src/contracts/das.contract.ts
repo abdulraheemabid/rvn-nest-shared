@@ -129,7 +129,5 @@ export interface EntryIdDTO {
 export interface EntryResponseDTO extends BaseResponseDTO {
     id?: number;
     entry: any;
-    definitionId: number;
     attributes?: JSON
-    request: any;
 }
