@@ -1,12 +1,12 @@
-import { CallHandler, ExecutionContext, Injectable, Logger, NestInterceptor } from '@nestjs/common';
+import { CallHandler, ExecutionContext } from '@nestjs/common';
 import { TcpContext } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ILogger } from '../common.interface';
 
-export class LoggingInterceptor implements NestInterceptor {
+export class CommonLoggingInterceptor {
   constructor(private logger: ILogger) { }
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  execute(context: ExecutionContext, next: CallHandler): Observable<any> {
     const pattern = context
       .switchToRpc()
       .getContext<TcpContext>()

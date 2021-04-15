@@ -5,9 +5,9 @@ import { map } from 'rxjs/operators'
 import { IApiResponseWrapper, ILogger } from '../common.interface';
 
 
-export class ResponseWrapperInterceptor implements NestInterceptor {
+export class CommonResponseWrapperInterceptor {
   constructor(private logger: ILogger) { }
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  execute(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((data) => {
 
