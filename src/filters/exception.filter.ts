@@ -1,14 +1,13 @@
-import { ArgumentsHost } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, Logger } from '@nestjs/common';
 import { TcpContext } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
-import { IApiResponseWrapper, ILogger } from '../common.interface';
-import { HttpExceptionCustomMessages } from '../http.utils';
+import { HttpExceptionCustomMessages, IApiResponseWrapper } from '..';
 
-export class CommonRPCExceptionFilter {
+@Catch()
+export class CommonRPCExceptionFilter implements ExceptionFilter {
+  private logger = new Logger(CommonRPCExceptionFilter.name);
 
-  constructor(private logger: ILogger) { }
-
-  execute(exception: any, host: ArgumentsHost) {
+  catch(exception: any, host: ArgumentsHost) {
 
     let message = exception?.error?.message || exception?.response?.message || exception?.message || HttpExceptionCustomMessages[exception?.response?.statusCode] || "Request unsuccessfull";
     const statusCode = exception?.error?.statusCode || exception?.statusCode || exception?.response?.statusCode || 500;

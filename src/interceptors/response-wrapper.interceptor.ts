@@ -1,13 +1,12 @@
-
 import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
-import { IApiResponseWrapper, ILogger } from '../common.interface';
+import { IApiResponseWrapper } from '../common.interface';
 
 
-export class CommonResponseWrapperInterceptor {
-  constructor(private logger: ILogger) { }
-  execute(context: ExecutionContext, next: CallHandler): Observable<any> {
+@Injectable()
+export class CommonResponseWrapperInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((data) => {
 
