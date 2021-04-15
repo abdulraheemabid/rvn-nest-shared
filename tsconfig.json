@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSourceMap": true,
+    "outDir": "build",
+    "rootDir": "src",
+    "pretty": true,
+    "lib": [
+      "es6",
+      "es2017.object"
+    ],
+    "importHelpers": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+}
