@@ -2,10 +2,11 @@
 import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
-import { IApiResponseWrapper } from '../common.interface';
+import { IApiResponseWrapper, ILogger } from '../common.interface';
 
 
 export class ResponseWrapperInterceptor implements NestInterceptor {
+  constructor(private logger: ILogger) { }
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((data) => {

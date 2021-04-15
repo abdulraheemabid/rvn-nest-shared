@@ -1,11 +1,12 @@
-import { ArgumentsHost, Catch, ExceptionFilter, Logger } from '@nestjs/common';
+import { ArgumentsHost, ExceptionFilter } from '@nestjs/common';
 import { TcpContext } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
-import { IApiResponseWrapper } from '../common.interface';
+import { IApiResponseWrapper, ILogger } from '../common.interface';
 import { HttpExceptionCustomMessages } from '../http.utils';
 
 export class UnhandledExceptionFilter implements ExceptionFilter {
-  private logger = new Logger(UnhandledExceptionFilter.name);
+
+  constructor(private logger: ILogger) { }
 
   catch(exception: any, host: ArgumentsHost) {
 
