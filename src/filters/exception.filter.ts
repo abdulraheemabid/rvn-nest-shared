@@ -4,35 +4,51 @@ import { Observable } from 'rxjs';
 import { HttpExceptionCustomMessages, IApiResponseWrapper } from '..';
 
 @Catch()
-export class CommonRPCExceptionFilter implements ExceptionFilter {
-  private logger = new Logger(CommonRPCExceptionFilter.name);
+export class CommonExceptionFilter implements ExceptionFilter {
+  private logger = new Logger(CommonExceptionFilter.name);
 
   catch(exception: any, host: ArgumentsHost) {
 
     let message = exception?.error?.message || exception?.response?.message || exception?.message || HttpExceptionCustomMessages[exception?.response?.statusCode] || "Request unsuccessfull";
     const statusCode = exception?.error?.statusCode || exception?.statusCode || exception?.response?.statusCode || 500;
 
-    const pattern = host
-      .switchToRpc()
-      .getContext<TcpContext>()
-      .getPattern();
-
-    let args = null;
-
-    try {
-      args = JSON.stringify(host.switchToRpc().getData());
-    } catch (error) { }
-
-
-    const response: IApiResponseWrapper = {
+    const responseBody: IApiResponseWrapper = {
       status: "failure",
       data: null,
       message,
       statusCode
     };
 
-    this.logger.error(`failed: outgoing for pattern: ${pattern} | args: ${args}`);
 
-    return new Observable(sub => { throw response; });
+    let patternOrURL = "";
+    let args = null;
+
+    switch (host.getType()) {
+
+      case "http":
+
+        const request = host.switchToHttp().getRequest()
+        const response = host.switchToHttp().getResponse();
+
+        patternOrURL = `${request.method}: ${request.url}`;
+        args = JSON.stringify(request.body);
+
+        this.logger.error(`failed: outgoing for pattern: ${patternOrURL} | args: ${args}`);
+
+        response.status(statusCode).json(responseBody);
+
+      default:
+
+        patternOrURL = host
+          .switchToRpc()
+          .getContext<TcpContext>()
+          .getPattern();
+
+        args = JSON.stringify(host.switchToRpc().getData());
+
+        this.logger.error(`failed: outgoing for pattern: ${patternOrURL} | args: ${args}`);
+
+        return new Observable(sub => { throw response; });
+    }
   }
 }

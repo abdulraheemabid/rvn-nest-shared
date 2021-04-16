@@ -7,24 +7,30 @@ import { tap } from 'rxjs/operators';
 export class CommonLoggingInterceptor implements NestInterceptor {
   private logger = new Logger(CommonLoggingInterceptor.name);
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const pattern = context
-      .switchToRpc()
-      .getContext<TcpContext>()
-      .getPattern();
 
+    let patternOrURL = "";
     let args = null;
 
-    try {
-      args = JSON.stringify(context.switchToRpc().getData());
-    } catch (error) { }
+    switch (context.getType()) {
+      case "http":
+        const request = context.switchToHttp().getRequest()
+        patternOrURL = `${request.method}: ${request.url}`;
+        args = JSON.stringify(request.body);
+        break;
+
+      default:
+        patternOrURL = context.switchToRpc().getContext<TcpContext>().getPattern();
+        args = JSON.stringify(context.switchToRpc().getData());
+        break;
+    }
 
     const now = Date.now();
 
-    this.logger.log(`incoming for pattern: ${pattern} | args: ${args}`);
-      
+    this.logger.log(`incoming for pattern: ${patternOrURL} | args: ${args}`);
+
     return next.handle().pipe(
       tap(() => {
-        this.logger.log(`outgoing for pattern: ${pattern} | time: ${Date.now() - now}ms`);
+        this.logger.log(`outgoing for pattern: ${patternOrURL} | time: ${Date.now() - now}ms`);
       })
     );
   }
