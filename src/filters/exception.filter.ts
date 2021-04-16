@@ -39,6 +39,8 @@ export class CommonExceptionFilter implements ExceptionFilter {
 
         response.status(statusCode).json(responseBody);
 
+        break;
+
       default:
 
         patternOrURL = host

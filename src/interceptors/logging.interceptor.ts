@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class CommonLoggingInterceptor implements NestInterceptor {
-  private logger = new Logger(CommonLoggingInterceptor.name);
+  private logger = new Logger(CommonLoggingInterceptor.name, true);
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 
     let patternOrURL = "";
@@ -26,11 +26,11 @@ export class CommonLoggingInterceptor implements NestInterceptor {
 
     const now = Date.now();
 
-    this.logger.log(`incoming pattern: ${patternOrURL} \t args: ${args} \n`);
+    this.logger.log(`incoming pattern: ${patternOrURL} \t args: ${args} \r`);
 
     return next.handle().pipe(
       tap(() => {
-        this.logger.log(`outgoing pattern: ${patternOrURL} \t time: ${Date.now() - now}ms \n`);
+        this.logger.log(`outgoing pattern: ${patternOrURL} \t time: ${Date.now() - now}ms \r`);
       })
     );
   }
