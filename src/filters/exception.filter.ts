@@ -9,6 +9,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
 
   catch(exception: any, host: ArgumentsHost) {
 
+    console.log("aaaaaaaaaaaaaaaaaa", JSON.stringify(exception));
     let message = exception?.error?.message || exception?.response?.message || exception?.message || HttpExceptionCustomMessages[exception?.response?.statusCode] || "Request unsuccessfull";
     const statusCode = exception?.error?.statusCode || exception?.statusCode || exception?.response?.statusCode || 500;
 
@@ -48,7 +49,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
 
         args = JSON.stringify(host.switchToRpc().getData());
 
-        this.logger.error(`pattern: ${patternOrURL} \t statusCode: ${statusCode} \t message: ${message} \n`);
+        this.logger.error(`pattern: ${patternOrURL} | statusCode: ${statusCode} | message: ${message}`);
 
         return new Observable(sub => { throw response; });
     }
