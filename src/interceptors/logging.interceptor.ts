@@ -26,7 +26,7 @@ export class CommonLoggingInterceptor implements NestInterceptor {
 
     const now = Date.now();
 
-    this.logger.log(`incoming pattern: ${patternOrURL} | args: ${args}`);
+    this.logger.log(`incoming pattern: ${patternOrURL}`);
 
     return next.handle().pipe(
       tap(() => {
