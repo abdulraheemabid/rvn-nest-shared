@@ -5,7 +5,7 @@ import { HttpExceptionCustomMessages, IApiResponseWrapper } from '..';
 
 @Catch()
 export class CommonExceptionFilter implements ExceptionFilter {
-  private logger = new Logger(CommonExceptionFilter.name);
+  private logger = new Logger(CommonExceptionFilter.name, true);
 
   catch(exception: any, host: ArgumentsHost) {
 
