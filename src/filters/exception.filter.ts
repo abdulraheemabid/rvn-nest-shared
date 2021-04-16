@@ -9,7 +9,6 @@ export class CommonExceptionFilter implements ExceptionFilter {
 
   catch(exception: any, host: ArgumentsHost) {
 
-    console.log("aaaaaaaaaaaaaaaaaa", JSON.stringify(exception));
     let message = exception?.error?.message || exception?.response?.message || exception?.message || HttpExceptionCustomMessages[exception?.response?.statusCode] || "Request unsuccessfull";
     const statusCode = exception?.error?.statusCode || exception?.statusCode || exception?.response?.statusCode || 500;
 
@@ -51,7 +50,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
 
         this.logger.error(`pattern: ${patternOrURL} | statusCode: ${statusCode} | message: ${message}`);
 
-        return new Observable(sub => { throw response; });
+        return new Observable(sub => { throw responseBody; });
     }
   }
 }
