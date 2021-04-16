@@ -33,7 +33,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
         patternOrURL = `${request.method}: ${request.url}`;
         args = JSON.stringify(request.body);
 
-        this.logger.error(`failed: outgoing for pattern: ${patternOrURL} | args: ${args}`);
+        this.logger.error(`pattern: ${patternOrURL} \t statusCode: ${statusCode} \t message: ${message}`);
 
         response.status(statusCode).json(responseBody);
 
@@ -46,7 +46,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
 
         args = JSON.stringify(host.switchToRpc().getData());
 
-        this.logger.error(`failed: outgoing for pattern: ${patternOrURL} | args: ${args}`);
+        this.logger.error(`pattern: ${patternOrURL} \t statusCode: ${statusCode} \t message: ${message}`);
 
         return new Observable(sub => { throw response; });
     }
