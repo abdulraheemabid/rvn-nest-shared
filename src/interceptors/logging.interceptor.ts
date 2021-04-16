@@ -26,11 +26,11 @@ export class CommonLoggingInterceptor implements NestInterceptor {
 
     const now = Date.now();
 
-    this.logger.log(`incoming for pattern: ${patternOrURL} | args: ${args}`);
+    this.logger.log(`incoming pattern: ${patternOrURL} \t args: ${args} \n`);
 
     return next.handle().pipe(
       tap(() => {
-        this.logger.log(`outgoing for pattern: ${patternOrURL} | time: ${Date.now() - now}ms`);
+        this.logger.log(`outgoing pattern: ${patternOrURL} \t time: ${Date.now() - now}ms \n`);
       })
     );
   }

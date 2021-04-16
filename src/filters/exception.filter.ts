@@ -23,6 +23,8 @@ export class CommonExceptionFilter implements ExceptionFilter {
     let patternOrURL = "";
     let args = null;
 
+    console.log(`host type ${host.getType()}`);
+
     switch (host.getType()) {
 
       case "http":
@@ -33,7 +35,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
         patternOrURL = `${request.method}: ${request.url}`;
         args = JSON.stringify(request.body);
 
-        this.logger.error(`pattern: ${patternOrURL} \t statusCode: ${statusCode} \t message: ${message}`);
+        this.logger.error(`pattern: ${patternOrURL} \t statusCode: ${statusCode} \t message: ${message} \n`);
 
         response.status(statusCode).json(responseBody);
 
@@ -46,7 +48,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
 
         args = JSON.stringify(host.switchToRpc().getData());
 
-        this.logger.error(`pattern: ${patternOrURL} \t statusCode: ${statusCode} \t message: ${message}`);
+        this.logger.error(`pattern: ${patternOrURL} \t statusCode: ${statusCode} \t message: ${message} \n`);
 
         return new Observable(sub => { throw response; });
     }
