@@ -12,12 +12,13 @@
       "es6",
       "es2017.object"
     ],
+    "experimentalDecorators": true,
     "importHelpers": true,
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true
+    "strictNullChecks": false
   },
   "include": [
     "src/**/*"

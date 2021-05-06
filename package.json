@@ -1,6 +1,6 @@
 {
-    "name": "@abdulraheemabid/rvn-shared",
-    "version": "0.0.34",
+    "name": "@abdulraheemabid/rvn-nest-shared",
+    "version": "0.0.48",
     "description": "",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -13,18 +13,20 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/abdulraheemabid/rvn-shared.git"
+        "url": "git+https://github.com/abdulraheemabid/rvn-nest-shared.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/abdulraheemabid/rvn-shared/issues"
+        "url": "https://github.com/abdulraheemabid/rvn-nest-shared/issues"
     },
-    "homepage": "https://github.com/abdulraheemabid/rvn-shared#readme",
+    "homepage": "https://github.com/abdulraheemabid/rvn-nest-shared#readme",
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/abdulraheemabid"
     },
     "dependencies": {
+        "@nestjs/common": "^7.6.15",
+        "@nestjs/microservices": "^7.6.15",
         "@types/node": "^14.14.7",
         "@types/reflect-metadata": "^0.1.0",
         "rxjs": "^6.6.7",
