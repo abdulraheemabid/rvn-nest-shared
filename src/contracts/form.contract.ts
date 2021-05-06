@@ -1,5 +1,5 @@
 import { FieldTypeEnum } from "../common.enums";
-import { IContractMessages } from "../common.interface";
+import { GenericObject, IContractMessages } from "../common.interface";
 import { DefinitionResponseDTO, EntryResponseDTO, IdDTO } from "../contracts/das.contract";
 
 export interface IFormMethods {
@@ -42,7 +42,7 @@ export class FormContractMessages implements IContractMessages {
 export interface FormDTO {
     name: string;
     fields: FormFieldDTO[];
-    attributes?: JSON;
+    attributes?: GenericObject;
     request: any
 }
 
@@ -50,7 +50,7 @@ export interface FormUpdateDTO {
     formId: number;
     name?: string;
     fields?: FormFieldDTO[];
-    attributes?: JSON;
+    attributes?: GenericObject;
     request: any
 }
 
@@ -62,7 +62,7 @@ export interface FormFieldDTO {
     required: boolean;
     validationRegex?: string;
     arrayValues?: string[];
-    attributes?: JSON;
+    attributes?: GenericObject;
     //need for update case
     markDeleted?: boolean;
 }
@@ -74,7 +74,7 @@ export interface FormIdDTO {
 export interface RecordDTO {
     formId: number;
     entry: any;
-    attributes?: JSON;
+    attributes?: GenericObject;
     request: any;
 }
 
@@ -82,7 +82,7 @@ export interface RecordUpdateDTO {
     formId: number;
     id: number;
     entry: any;
-    attributes?: JSON;
+    attributes?: GenericObject;
     request: any;
 }
 

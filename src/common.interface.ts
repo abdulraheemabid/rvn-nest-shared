@@ -39,3 +39,7 @@ export interface ICustomException{
     message: string,
     statusCode: number
 }
+
+export interface GenericObject {
+    [key: string]: any;
+}

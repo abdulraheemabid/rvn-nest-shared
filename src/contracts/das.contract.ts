@@ -2,7 +2,7 @@
 
 // Methods available in DAS Service
 
-import { BaseResponseDTO, IContractMessages } from "../common.interface";
+import { BaseResponseDTO, GenericObject, IContractMessages } from "../common.interface";
 
 export interface IDASMethods {
     fetchAllDefinitions(): Promise<DefinitionResponseDTO[]>;
@@ -48,16 +48,16 @@ export interface DefinitionDTO {
     id?: number;
     name: string;
     fields?: FieldDTO[];
-    attributes?: JSON
-    request: any
-    definitionId?: number
+    attributes?: GenericObject;
+    request: any;
+    definitionId?: number;
 }
 
 export interface DefinitionUpdateDTO {
     id?: number;
     name?: string;
     fields?: FieldDTO[];
-    attributes?: JSON
+    attributes?: GenericObject
     request: any
     definitionId: number
 }
@@ -85,7 +85,7 @@ export interface FieldResponseDTO extends BaseResponseDTO {
     name: string;
     type: string;
     required: boolean;
-    attributes?: JSON;
+    attributes?: GenericObject;
     validationRegex?: string;
     arrayValues?: string[];
 }
@@ -94,7 +94,7 @@ export interface EntryDTO {
     id?: number;
     entry: any;
     definitionId: number;
-    attributes?: JSON
+    attributes?: GenericObject
     request: any;
 }
 
@@ -102,7 +102,7 @@ export interface EntryUpdateDTO {
     id: number;
     entry: any;
     definitionId: number;
-    attributes?: JSON
+    attributes?: GenericObject
     request: any;
 }
 
@@ -129,5 +129,5 @@ export interface EntryIdDTO {
 export interface EntryResponseDTO extends BaseResponseDTO {
     id?: number;
     entry: any;
-    attributes?: JSON
+    attributes?: GenericObject
 }
