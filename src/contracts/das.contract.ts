@@ -78,6 +78,7 @@ export interface DefinitionResponseDTO extends BaseResponseDTO {
     id: number;
     name: string;
     fields?: FieldResponseDTO[];
+    attributes?: GenericObject;
 }
 
 export interface FieldResponseDTO extends BaseResponseDTO {
