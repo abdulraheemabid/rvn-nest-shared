@@ -93,5 +93,5 @@ export interface RecordIdDTO {
 }
 
 export interface RecordSearchDTO extends FormIdDTO {
-    searchOptions: GenericObject;
+    searchOptions?: GenericObject;
 }
