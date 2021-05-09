@@ -98,5 +98,5 @@ export interface RecordSearchDTO extends FormIdDTO {
 }
 
 export interface RecordDeleteDTO extends RecordIdDTO {
-    newParentIdForChildren: number;
+    newParentIdForChildren?: number;
 }
