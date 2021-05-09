@@ -17,6 +17,7 @@ export interface IDASMethods {
     createEntry(entryDto: EntryDTO): Promise<IdDTO>;
     updateEntry(entryDto: EntryUpdateDTO): Promise<IdDTO>;
     deleteEntry(entryDto: EntryIdDTO): Promise<IdDTO>;
+    bulkUpdateEntriesParents(dto: BulkUpdateEntriesParentsDTO);
 }
 
 // All meesages used for the methods in DAS Service 
@@ -36,7 +37,8 @@ export class DASContractMessages implements IContractMessages {
             fetchById: { service: this.serviceName, module: "entry", method: "fetchEntryById" },
             create: { service: this.serviceName, module: "entry", method: "createEntry" },
             update: { service: this.serviceName, module: "entry", method: "updateEntry" },
-            delete: { service: this.serviceName, module: "entry", method: "deleteEntry" }
+            delete: { service: this.serviceName, module: "entry", method: "deleteEntry" },
+            bulkUpdateEntriesParents: { service: this.serviceName, module: "entry", method: "bulkUpdateEntriesParents" },
         }
     }
 }
@@ -139,4 +141,11 @@ export interface EntryResponseDTO extends BaseResponseDTO {
 
 export interface EntrySearchDTO extends DefinitionIdDTO {
     searchOptions?: GenericObject;
+}
+
+export interface BulkUpdateEntriesParentsDTO {
+    definitionIds: number[];
+    curerntParentId?: number;
+    parentIdToSet: number;
+    request: any
 }
