@@ -12,7 +12,7 @@ export interface IDASMethods {
     updateDefinition(definitionDTO: DefinitionUpdateDTO): Promise<IdDTO>;
     deleteDefinition(definitionDTO: DefinitionIdDTO): Promise<IdDTO>;
 
-    fetchAllEntries(definitionDTO: DefinitionIdDTO): Promise<EntryResponseDTO[]>;
+    fetchAllEntries(entrySearchDTO: EntrySearchDTO): Promise<EntryResponseDTO[]>;
     fetchEntryById(entryDto: EntryIdDTO): Promise<EntryResponseDTO>;
     createEntry(entryDto: EntryDTO): Promise<IdDTO>;
     updateEntry(entryDto: EntryUpdateDTO): Promise<IdDTO>;
@@ -63,11 +63,13 @@ export interface DefinitionUpdateDTO {
 }
 
 export interface DefinitionIdDTO {
-    definitionId: number
+    definitionId: number,
+    request?: any
 }
 
 export interface DefinitionNameDTO {
-    name: string
+    name: string;
+    request?: any
 }
 
 export interface IdDTO {
@@ -110,6 +112,7 @@ export interface EntryUpdateDTO {
 export interface EntryIdInputDTO {
     id: number;
     definitionId: number;
+    request?: any
 }
 
 export interface FieldDTO {
@@ -125,10 +128,15 @@ export interface FieldDTO {
 export interface EntryIdDTO {
     id: number;
     definitionId: number;
+    request?: any
 }
 
 export interface EntryResponseDTO extends BaseResponseDTO {
     id?: number;
     entry: any;
     attributes?: GenericObject
+}
+
+export interface EntrySearchDTO extends DefinitionIdDTO {
+    searchOptions: GenericObject;
 }

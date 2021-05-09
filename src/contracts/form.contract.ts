@@ -9,7 +9,7 @@ export interface IFormMethods {
     updateForm(formDTO: FormUpdateDTO): Promise<IdDTO>;
     deleteForm(formDTO: FormIdDTO): Promise<IdDTO>;
 
-    fetchAllRecords(formDTO: FormIdDTO): Promise<EntryResponseDTO[]>;
+    fetchAllRecords(recordSearchDTO: RecordSearchDTO): Promise<EntryResponseDTO[]>;
     fetchARecordById(entryDto: RecordIdDTO): Promise<EntryResponseDTO>;
     createRecord(entryDto: RecordDTO): Promise<IdDTO>;
     updateRecord(entryDto: RecordUpdateDTO): Promise<IdDTO>;
@@ -69,6 +69,7 @@ export interface FormFieldDTO {
 
 export interface FormIdDTO {
     formId: number;
+    request?: any;
 }
 
 export interface RecordDTO {
@@ -89,4 +90,8 @@ export interface RecordUpdateDTO {
 export interface RecordIdDTO {
     formId: number;
     recordId: number;
+}
+
+export interface RecordSearchDTO extends FormIdDTO {
+    searchOptions: GenericObject;
 }
