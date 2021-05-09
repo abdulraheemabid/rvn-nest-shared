@@ -1,6 +1,6 @@
 import { DefinitionResponseDTO, IdDTO, EntryResponseDTO, MSClient } from "..";
 import { ILogger } from "../common.interface";
-import { FormContractMessages, FormDTO, FormIdDTO, FormUpdateDTO, IFormMethods, RecordDTO, RecordIdDTO, RecordUpdateDTO } from "../contracts/form.contract";
+import { FormContractMessages, FormDTO, FormIdDTO, FormUpdateDTO, IFormMethods, RecordDTO, RecordIdDTO, RecordSearchDTO, RecordUpdateDTO } from "../contracts/form.contract";
 
 
 export class FormClient implements IFormMethods {
@@ -31,7 +31,7 @@ export class FormClient implements IFormMethods {
         return this._MSClient.send(this.messages.modules.form.delete, payload);
     }
 
-    async fetchAllRecords(payload: FormIdDTO): Promise<EntryResponseDTO[]> {
+    async fetchAllRecords(payload: RecordSearchDTO): Promise<EntryResponseDTO[]> {
         return this._MSClient.send(this.messages.modules.record.fetchAll, payload);
     }
 

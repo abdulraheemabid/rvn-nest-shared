@@ -1,5 +1,6 @@
 import { IDASMethods, DASContractMessages, DefinitionResponseDTO, DefinitionIdDTO, DefinitionNameDTO, DefinitionDTO, IdDTO, DefinitionUpdateDTO, EntryDTO, EntryIdDTO, EntryUpdateDTO, EntryResponseDTO } from "..";
 import { ILogger } from "../common.interface";
+import { EntrySearchDTO } from "../contracts/das.contract";
 import { MSClient } from "./ms-client";
 
 export class DASClient implements IDASMethods {
@@ -34,7 +35,7 @@ export class DASClient implements IDASMethods {
         return this._MSClient.send(this.messages.modules.definition.delete, payload);
     }
 
-    async fetchAllEntries(payload: DefinitionIdDTO): Promise<EntryResponseDTO[]> {
+    async fetchAllEntries(payload: EntrySearchDTO): Promise<EntryResponseDTO[]> {
         return this._MSClient.send(this.messages.modules.entry.fetchAll, payload);
     }
 
