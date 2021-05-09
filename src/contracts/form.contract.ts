@@ -10,10 +10,10 @@ export interface IFormMethods {
     deleteForm(formDTO: FormIdDTO): Promise<IdDTO>;
 
     fetchAllRecords(recordSearchDTO: RecordSearchDTO): Promise<EntryResponseDTO[]>;
-    fetchARecordById(entryDto: RecordIdDTO): Promise<EntryResponseDTO>;
-    createRecord(entryDto: RecordDTO): Promise<IdDTO>;
-    updateRecord(entryDto: RecordUpdateDTO): Promise<IdDTO>;
-    deleteRecord(entryDto: RecordIdDTO): Promise<IdDTO>;
+    fetchARecordById(recordDto: RecordIdDTO): Promise<EntryResponseDTO>;
+    createRecord(recordDto: RecordDTO): Promise<IdDTO>;
+    updateRecord(recordDto: RecordUpdateDTO): Promise<IdDTO>;
+    deleteRecord(recordDto: RecordDeleteDTO): Promise<IdDTO>;
 }
 
 // All meesages used for the methods in DAS Service 
@@ -95,4 +95,8 @@ export interface RecordIdDTO {
 export interface RecordSearchDTO extends FormIdDTO {
     searchOptions?: GenericObject;
     parentId?: number;
+}
+
+export interface RecordDeleteDTO extends RecordIdDTO {
+    newParentIdForChildren: number;
 }
