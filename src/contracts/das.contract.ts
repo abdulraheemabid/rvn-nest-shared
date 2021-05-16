@@ -141,6 +141,7 @@ export interface EntryResponseDTO extends BaseResponseDTO {
 
 export interface EntrySearchDTO extends DefinitionIdDTO {
     searchOptions?: GenericObject;
+    parentEntryId?: number;
 }
 
 export interface BulkUpdateEntriesParentsDTO {

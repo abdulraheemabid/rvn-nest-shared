@@ -94,7 +94,7 @@ export interface RecordIdDTO {
 
 export interface RecordSearchDTO extends FormIdDTO {
     searchOptions?: GenericObject;
-    parentId?: number;
+    parentRecordId?: number;
 }
 
 export interface RecordDeleteDTO extends RecordIdDTO {
