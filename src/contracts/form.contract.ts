@@ -4,6 +4,7 @@ import { DefinitionResponseDTO, EntryResponseDTO, IdDTO } from "../contracts/das
 
 export interface IFormMethods {
     fetchAllForms(): Promise<DefinitionResponseDTO[]>;
+    fetchFormDirectChildren(formDTO: FormIdDTO): Promise<number[]>;
     fetchFormById(formDTO: FormIdDTO): Promise<DefinitionResponseDTO>;
     createForm(formDTO: FormDTO): Promise<IdDTO>;
     updateForm(formDTO: FormUpdateDTO): Promise<IdDTO>;
@@ -22,6 +23,7 @@ export class FormContractMessages implements IContractMessages {
     readonly modules = {
         form: {
             fetchAll: { service: this.serviceName, module: "form", method: "fetchAllForms" },
+            fetchFormDirectChildren: { service: this.serviceName, module: "form", method: "fetchFormDirectChildren" },
             fetchById: { service: this.serviceName, module: "form", method: "fetchFormById" },
             create: { service: this.serviceName, module: "form", method: "createForm" },
             update: { service: this.serviceName, module: "form", method: "updateForm" },

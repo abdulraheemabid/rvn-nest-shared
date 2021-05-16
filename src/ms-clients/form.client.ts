@@ -15,6 +15,10 @@ export class FormClient implements IFormMethods {
         return this._MSClient.send(this.messages.modules.form.fetchAll, {});
     }
 
+    fetchFormDirectChildren(payload: FormIdDTO): Promise<number[]> {
+        return this._MSClient.send(this.messages.modules.form.fetchFormDirectChildren, payload);
+    }
+
     async fetchFormById(payload: FormIdDTO): Promise<DefinitionResponseDTO> {
         return this._MSClient.send(this.messages.modules.form.fetchById, payload);
     }
