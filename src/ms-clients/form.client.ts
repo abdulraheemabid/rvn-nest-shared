@@ -19,7 +19,7 @@ export class FormClient implements IFormMethods {
         return this._MSClient.send(this.messages.modules.form.fetchFormDirectChildren, payload);
     }
 
-    async fetchAllFormTrees(): Promise<FormRelationDTO> {
+    async fetchAllFormTrees(): Promise<FormRelationDTO[]> {
         return this._MSClient.send(this.messages.modules.form.fetchAllFormTrees, {});
     }
 

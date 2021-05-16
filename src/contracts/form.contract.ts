@@ -5,7 +5,7 @@ import { DefinitionResponseDTO, EntryResponseDTO, IdDTO } from "../contracts/das
 export interface IFormMethods {
     fetchAllForms(): Promise<DefinitionResponseDTO[]>;
     fetchFormDirectChildren(formDTO: FormIdDTO): Promise<number[]>;
-    fetchAllFormTrees(): Promise<FormRelationDTO>;
+    fetchAllFormTrees(): Promise<FormRelationDTO[]>;
     fetchFormById(formDTO: FormIdDTO): Promise<DefinitionResponseDTO>;
     createForm(formDTO: FormDTO): Promise<IdDTO>;
     updateForm(formDTO: FormUpdateDTO): Promise<IdDTO>;
