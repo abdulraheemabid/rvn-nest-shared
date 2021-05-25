@@ -2,6 +2,9 @@ import { FieldTypeEnum } from "../common.enums";
 import { GenericObject, IContractMessages } from "../common.interface";
 import { DefinitionResponseDTO, EntryResponseDTO, IdDTO } from "../contracts/das.contract";
 
+/**
+ * Forms microservice contract
+ */
 export interface IFormMethods {
     fetchAllForms(): Promise<DefinitionResponseDTO[]>;
     fetchFormDirectChildren(formDTO: FormIdDTO): Promise<number[]>;
@@ -18,7 +21,9 @@ export interface IFormMethods {
     deleteRecord(recordDto: RecordDeleteDTO): Promise<IdDTO>;
 }
 
-// All meesages used for the methods in DAS Service 
+/**
+ * Forms microservice method's message patterns
+ */
 export class FormContractMessages implements IContractMessages {
     readonly serviceName = "form";
     readonly modules = {
@@ -42,7 +47,9 @@ export class FormContractMessages implements IContractMessages {
 }
 
 
-//DTOs
+/**
+ * Forms microservice DTOs
+ */
 export interface FormDTO {
     name: string;
     fields: FormFieldDTO[];

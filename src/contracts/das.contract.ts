@@ -1,9 +1,8 @@
-
-
-// Methods available in DAS Service
-
 import { BaseResponseDTO, GenericObject, IContractMessages } from "../common.interface";
 
+/**
+ * DAS microservice contract
+ */
 export interface IDASMethods {
     fetchAllDefinitions(): Promise<DefinitionResponseDTO[]>;
     fetchDefinitionById(definitionDTO: DefinitionIdDTO): Promise<DefinitionResponseDTO>;
@@ -20,7 +19,10 @@ export interface IDASMethods {
     bulkUpdateEntriesParents(dto: BulkUpdateEntriesParentsDTO);
 }
 
-// All meesages used for the methods in DAS Service 
+
+/**
+ * DAS microservice method's message patterns
+ */
 export class DASContractMessages implements IContractMessages {
     readonly serviceName = "das";
     readonly modules = {
@@ -44,7 +46,9 @@ export class DASContractMessages implements IContractMessages {
 }
 
 
-// DTOs
+/**
+ * DAS microservice DTOs
+ */
 
 export interface DefinitionDTO {
     id?: number;
