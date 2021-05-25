@@ -1,3 +1,6 @@
+/**
+ * All responses containing data from DB contains these properties
+ */
 export interface BaseResponseDTO {
     id?: number;
     createdOn?: Date;
@@ -7,6 +10,10 @@ export interface BaseResponseDTO {
     deletedOn?: Date;
 }
 
+/**
+ * All services using the `CommonResponseWrapperInterceptor` 
+ * will produce response following this interface
+ */
 export interface IApiResponseWrapper {
     status: "success" | "failure";
     statusCode: number,
@@ -14,6 +21,9 @@ export interface IApiResponseWrapper {
     message: string;
 }
 
+/**
+ * If custom logger is defined, It should implement this interface 
+ */
 export interface ILogger {
     log(message: any, context?: string): any;
     error(message: any, trace?: string, context?: string): any;
@@ -35,7 +45,7 @@ export interface IContractMessages {
     }
 }
 
-export interface ICustomException{
+export interface ICustomException {
     message: string,
     statusCode: number
 }

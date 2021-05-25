@@ -4,6 +4,15 @@ import { map } from 'rxjs/operators'
 import { IApiResponseWrapper } from '../common.interface';
 
 
+/**
+ * This `CommonResponseWrapperInterceptor` wraps the response to `IApiResponseWrapper`
+ * 
+ * By using this, all nest apps and microservices using this interceptor will have a standart response structure
+ * 
+ * @example
+ * This interceptor can be plugged in nest app's main.ts
+ * app.useGlobalInterceptors(new CommonResponseWrapperInterceptor());
+ */
 @Injectable()
 export class CommonResponseWrapperInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {

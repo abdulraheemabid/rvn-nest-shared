@@ -3,6 +3,10 @@ import { ILogger } from "../common.interface";
 import { BulkUpdateEntriesParentsDTO, EntrySearchDTO } from "../contracts/das.contract";
 import { MSClient } from "./ms-client";
 
+/**
+ * DAS microservice client. 
+ * Consumers just need to inehrit this and pass in the constructor parameters and use the available functions in DAS microservice
+ */
 export class DASClient implements IDASMethods {
     private _MSClient: MSClient;
     private messages = new DASContractMessages();

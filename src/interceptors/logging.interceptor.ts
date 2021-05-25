@@ -3,6 +3,15 @@ import { TcpContext } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+/**
+ * This `CommonLoggingInterceptor` can be plugged in any nest app.
+ * 
+ * This will log the incoming request either http or via tcp and log the response as well. Either successfull or exception
+ * 
+ * @example
+ * This filter can be plugged in nest app's main.ts
+ * app.useGlobalInterceptors(new CommonLoggingInterceptor());
+ */
 @Injectable()
 export class CommonLoggingInterceptor implements NestInterceptor {
   private logger = new Logger(CommonLoggingInterceptor.name, true);

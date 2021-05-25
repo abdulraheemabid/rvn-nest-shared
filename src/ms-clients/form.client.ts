@@ -3,6 +3,10 @@ import { ILogger } from "../common.interface";
 import { FormContractMessages, FormDTO, FormIdDTO, FormRelationDTO, FormUpdateDTO, IFormMethods, RecordDeleteDTO, RecordDTO, RecordIdDTO, RecordSearchDTO, RecordUpdateDTO } from "../contracts/form.contract";
 
 
+/**
+ * DAS microservice client. 
+ * Consumers just need to inehrit this and pass in the constructor parameters and use the available functions in DAS microservice
+ */
 export class FormClient implements IFormMethods {
     private _MSClient: MSClient;
     private messages = new FormContractMessages();
